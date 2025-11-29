@@ -1,0 +1,22 @@
+cities:
+  - Jakarta
+  - Surabaya
+  - Bandung
+  - Medan
+  - Semarang
+  - Makassar
+  - Palembang
+  - Bekasi
+  - Depok
+  - Tangerang
+
+weather_api:
+  base_url: "https://api.weatherapi.com/v1/current.json"
+  aqi: "yes"
+
+interval_minutes: 60
+
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  logs: "data/logs"

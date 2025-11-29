@@ -1,0 +1,54 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+venv/
+.env/
+.env.*
+
+# Raw and processed data
+data/raw/
+data/processed/
+data/logs/
+
+# Temporary data files
+*.json
+*.parquet
+*.xlsx
+
+.ipynb_checkpoints/
+.vscode/
+.idea/
+*.swp
+
+.DS_Store
+Thumbs.db
+
+
+*.log
+docker-compose.override.yml
+docker-data/
+pgdata/
+
+# Airflow 
+airflow/logs/
+airflow/dags/__pycache__/
+airflow/plugins/
+airflow/airflow.cfg
+airflow/airflow.db
+airflow/webserver_config.py
+
+.env
+*.pem
+*.key
+*.token
+
+docs/*.docx
+docs/*.drawio
+docs/*.png
+docs/*.pdf
