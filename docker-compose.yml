@@ -2,17 +2,57 @@ version: '3.9'
 
 services:
   postgres:
-    image: postgres:15
-    container_name: case1_postgres
-    restart: always
+    image: postgres:15-alpine
+    container_name: air_quality_postgres
+    restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:-airquality_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-airquality_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-air_quality_monitoring}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-airquality_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - air_quality_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Optional: pgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4:7
+    container_name: air_quality_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - air_quality_network
+    profiles:
+      - dev
 
 volumes:
   pgdata:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  air_quality_network:
+    driver: bridge
+
