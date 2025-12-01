@@ -5,9 +5,6 @@ from src.transform.daily_batch import run_daily_batch
 from src.analysis.city_ispa_joined import build_city_ispa
 
 def run_pipeline():
-    print("\n==============================")
-    print("      AIR QUALITY PIPELINE    ")
-    print("==============================\n")
 
     # 1. Ingest WeatherAPI (cuaca + polusi)
     print("[1] Ingesting data from WeatherAPI...")
@@ -34,9 +31,7 @@ def run_pipeline():
     build_city_ispa()
     print("✓ city_ispa_joined completed.\n")
 
-    print("===========================================")
-    print("     PIPELINE FINISHED SUCCESSFULLY!")
-    print("===========================================\n")
+    print("All pipeline steps completed successfully!")
 
 if __name__ == "__main__":
     run_pipeline()
