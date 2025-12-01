@@ -1,7 +1,7 @@
 # Air Quality Monitoring Pipeline
 
 ## Overview
-Automated ETL pipeline for collecting, processing, and analyzing air quality data from multiple Indonesian cities.
+An automated ETL workflow that gathers, cleans, and analyzes air quality data across Indonesian cities.
 
 ## Architecture
 ```
