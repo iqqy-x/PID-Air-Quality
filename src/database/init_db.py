@@ -24,6 +24,7 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS raw_air_quality (
             id SERIAL PRIMARY KEY,
             city VARCHAR(50),
+            file_name VARCHAR(255),
             timestamp TIMESTAMP,
             temperature FLOAT,
             humidity FLOAT,
@@ -80,7 +81,6 @@ def create_tables():
     cur.execute("""
         CREATE TABLE IF NOT EXISTS city_ispa_joined (
             id SERIAL PRIMARY KEY,
-            file_name VARCHAR(255),
             city VARCHAR(50),
             province VARCHAR(100),
             pm25_yearly FLOAT,
