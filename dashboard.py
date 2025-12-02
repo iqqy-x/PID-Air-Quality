@@ -27,7 +27,7 @@ def load_city_ispa():
     df = pd.read_sql(query, conn)
     conn.close()
     
-    coords = pd.read_csv('data/references/coordinates.csv')
+    coords = pd.read_csv('data/coordinates.csv')
     df = df.merge(coords, on='city', how='left')
     
     return df
