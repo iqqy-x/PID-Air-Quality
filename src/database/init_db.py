@@ -20,11 +20,11 @@ def create_tables():
     )
     cur = conn.cursor()
 
-    # Raw Data Table
     cur.execute("""
         CREATE TABLE IF NOT EXISTS raw_air_quality (
             id SERIAL PRIMARY KEY,
             city VARCHAR(50),
+            file_name VARCHAR(255),
             timestamp TIMESTAMP,
             temperature FLOAT,
             humidity FLOAT,
@@ -40,7 +40,6 @@ def create_tables():
         );
     """)
 
-    # Clean Data Table
     cur.execute("""
         CREATE TABLE IF NOT EXISTS clean_air_quality (
             id SERIAL PRIMARY KEY,
@@ -58,7 +57,6 @@ def create_tables():
         );
     """)
 
-    # Daily Aggregation Table
     cur.execute("""
         CREATE TABLE IF NOT EXISTS daily_air_quality (
             id SERIAL PRIMARY KEY,
@@ -69,6 +67,28 @@ def create_tables():
             aqi_avg FLOAT,
             temp_avg FLOAT,
             humidity_avg FLOAT
+        );
+    """)
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS ispa_province (
+            id SERIAL PRIMARY KEY,
+            province VARCHAR(100),
+            prevalence_2023 FLOAT
+        );
+    """)
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS city_ispa_joined (
+            id SERIAL PRIMARY KEY,
+            city VARCHAR(50),
+            province VARCHAR(100),
+            pm25_yearly FLOAT,
+            pm10_yearly FLOAT,
+            aqi_yearly FLOAT,
+            temp_yearly FLOAT,
+            humidity_yearly FLOAT,
+            prevalence_2023 FLOAT
         );
     """)
 

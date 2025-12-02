@@ -27,8 +27,7 @@ def load_city_ispa():
     df = pd.read_sql(query, conn)
     conn.close()
     
-    # Gabungkan dengan data koordinat
-    coords = pd.read_csv('coordinates.csv')
+    coords = pd.read_csv('data/references/coordinates.csv')
     df = df.merge(coords, on='city', how='left')
     
     return df
@@ -41,7 +40,6 @@ except Exception as e:
     st.error(f"Gagal memuat database: {e}")
     st.stop()
 
-# Korelasi di atas (full width)
 st.subheader("PM2.5 vs ISPA")
 fig_scatter = px.scatter(
     df,
@@ -56,10 +54,8 @@ fig_scatter = px.scatter(
 )
 st.plotly_chart(fig_scatter, use_container_width=True)
 
-# Divider untuk pemisah visual
 st.divider()
 
-# Peta sebaran di bawah (full width)
 st.subheader("🗺️ Peta Sebaran Polusi")
 
 if 'latitude' in df.columns and 'longitude' in df.columns:
