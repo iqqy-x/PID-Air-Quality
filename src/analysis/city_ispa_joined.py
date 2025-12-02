@@ -11,7 +11,6 @@ DB_NAME = os.getenv("POSTGRES_DB")
 DB_HOST = os.getenv("POSTGRES_HOST")
 DB_PORT = os.getenv("POSTGRES_PORT")
 
-# Load mapping kota → provinsi
 with open("config/city_to_province.yaml", "r") as f:
     CITY_TO_PROV = yaml.safe_load(f)
 
@@ -25,17 +24,14 @@ def build_city_ispa():
     )
     cur = conn.cursor()
 
-    # Kosongkan tabel agar tidak double insert
     cur.execute("DELETE FROM city_ispa_joined;")
 
-    # Ambil data harian per kota
     cur.execute("""
         SELECT city, pm25_avg, pm10_avg, aqi_avg, temp_avg, humidity_avg
         FROM daily_air_quality;
     """)
     rows = cur.fetchall()
 
-    # Struktur penampung
     city_data = {}
 
     for city, pm25, pm10, aqi, temp, hum in rows:
@@ -60,7 +56,6 @@ def build_city_ispa():
         city_data[city]["temp"].append(temp)
         city_data[city]["hum"].append(hum)
 
-    # Insert hasil ke tabel city_ispa_joined
     for city, metrics in city_data.items():
 
         pm25_yearly = sum(metrics["pm25"]) / len(metrics["pm25"])
@@ -71,7 +66,6 @@ def build_city_ispa():
 
         province = metrics["province"]
 
-        # Ambil ISPA dari tabel provinsi
         cur.execute("""
             SELECT prevalence_2023
             FROM ispa_province
