@@ -80,6 +80,7 @@ def create_tables():
     cur.execute("""
         CREATE TABLE IF NOT EXISTS city_ispa_joined (
             id SERIAL PRIMARY KEY,
+            file_name VARCHAR(255),
             city VARCHAR(50),
             province VARCHAR(100),
             pm25_yearly FLOAT,
