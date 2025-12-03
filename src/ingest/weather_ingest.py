@@ -37,14 +37,14 @@ def save_raw(data, city):
     print(f"[OK] Saved raw data: {filename}")
 
 def run_ingest():
-    print("=== Running WeatherAPI Ingest ===")
+    print("Running WeatherAPI ingest...")
 
     for city in CITIES:
         print(f"Fetching data for: {city}")
         data = fetch_city_weather(city)
         save_raw(data, city)
 
-    print("=== Ingest completed ===")
+    print("Ingest completed!")
 
 if __name__ == "__main__":
     run_ingest()

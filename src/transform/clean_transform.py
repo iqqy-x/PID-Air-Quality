@@ -60,7 +60,7 @@ def clean_transform():
     conn.commit()
     cur.close()
     conn.close()
-    print("Clean transform complete.")
+    print("Clean transform complete!")
 
 
 if __name__ == "__main__":

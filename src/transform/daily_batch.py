@@ -62,7 +62,7 @@ def run_daily_batch():
     conn.commit()
     cur.close()
     conn.close()
-    print("Daily batch process complete.")
+    print("Daily batch process complete!")
 
 if __name__ == "__main__":
     run_daily_batch()

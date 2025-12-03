@@ -91,7 +91,7 @@ def build_city_ispa():
     conn.commit()
     cur.close()
     conn.close()
-    print("city_ispa_joined updated.")
+    print("city_ispa_joined updated!")
 
 if __name__ == "__main__":
     build_city_ispa()

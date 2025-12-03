@@ -71,7 +71,7 @@ def seed():
     conn.commit()
     cur.close()
     conn.close()
-    print("ISPA province data seeded successfully.")
+    print("ISPA province data seeded successfully!")
 
 if __name__ == "__main__":
     seed()
