@@ -216,3 +216,7 @@ interval_minutes: 60  # Change as needed
 2. **Clean Data:** Normalized pollution metrics in `clean_air_quality`
 3. **Aggregated Data:** Daily averages per city in `daily_air_quality`
 4. **Analysis Data:** Yearly city averages joined with provincial ISPA rates in `city_ispa_joined`
+
+## Data Sources
+- **Air Quality Data:** [WeatherAPI](https://www.weatherapi.com/)
+- **ISPA Prevalence Data:** [Survei Kesehatan Indonesia (SKI) Dalam Angka 2023](https://drive.google.com/file/d/1rjNDG_f8xG6-Y9wmhJUnXhJ-vUFevVJC/view)
